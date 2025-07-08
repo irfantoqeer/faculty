@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Physics - RIU Faisalabad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0d3b66;
+            --secondary: #1d639b;
+            --accent: #e63946;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+            z-index: 1;
+        }
+
+        .university-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .university-logo {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .university-logo i {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .university-logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .university-info {
+            text-align: left;
+        }
+
+        .university-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+            font-weight: 700;
+        }
+
+        .university-info p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Introduction */
+        .introduction {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--light-gray);
+            position: relative;
+            z-index: 1;
+        }
+
+        .introduction h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .introduction h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .introduction p {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        /* Directory Sections */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .section-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-right: 1rem;
+        }
+
+        .section-icon {
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        /* Directory Grid */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .person-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .person-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .person-photo {
+            height: 200px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .person-photo i {
+            font-size: 5rem;
+            color: var(--gray);
+        }
+
+        .person-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .person-info {
+            padding: 1.8rem;
+            flex-grow: 1;
+        }
+
+        .person-info h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .designation {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .research-area {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--light-gray);
+        }
+
+        .research-area strong {
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .university-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .university-logo {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .university-info {
+                text-align: center;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .introduction {
+                padding: 1.5rem;
+            }
+            
+            .directory-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .section-header {
+                margin: 2.5rem 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.7rem;
+            }
+            
+            .directory-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="university-header">
+                <div class="university-logo">
+                    <img src="images/university_logo.png" alt="Riphah International University Logo">
+                </div>
+                <div class="university-info">
+                    <h2>Riphah International University</h2>
+                    <p>Department of Physics, Faisalabad Campus</p>
+                </div>
+            </div>
+            
+            <h1 class="page-title">MPhil & PhD Researchers & Supervisors</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="introduction">
+            <h2>About Our Research Department</h2>
+            <p>The Department of Physics at Riphah International University, Faisalabad Campus, is dedicated to advancing knowledge through cutting-edge research in various fields of physics. Our postgraduate program brings together talented researchers and experienced supervisors to explore fundamental questions and develop innovative solutions to real-world problems.</p>
+            <p>Our research groups focus on interdisciplinary areas including condensed matter physics, quantum mechanics, material science, and computational physics. We foster a collaborative environment where MPhil and PhD candidates work alongside distinguished faculty members to push the boundaries of scientific discovery.</p>
+        </section>
+
+        <div class="section-header">
+            <div class="section-icon">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <h2>Research Supervisors</h2>
+        </div>
+
+        <div class="directory-grid">
+            <!-- Supervisor 1 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <img src="images/dr-irfan-toqeer.jpg" alt="Dr. Irfan Toqeer">
+                </div>
+                <div class="person-info">
+                    <h3>Dr. Irfan Toqeer</h3>
+                    <span class="designation">Assistant Professor</span>
+                    <p class="research-area">
+                        <strong>Research Focus:</strong> Electromagnetics and nanomaterial characterization. 
+                </div>
+            </article>
+            
+            <!-- Supervisor 2 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <img src="images/dr-abdul-ghuffar.png" alt="Prof. Dr. Abdul Ghuffar">
+                </div>
+                <div class="person-info">
+                    <h3>Prof. Dr. Abdul Ghuffar</h3>
+                    <span class="designation">Professor & Head of Department</span>
+                    <p class="research-area">
+                        <strong>Research Focus:</strong> Material science.
+                    </p>
+                </div>
+            </article>
+            
+            <!-- Supervisor 3 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <img src="images/dr-muhammad-afzaal.png" alt="Dr. Muhammad Afzaal">
+                </div>
+                <div class="person-info">
+                    <h3>Dr. Muhammad Afzaal</h3>
+                    <span class="designation">Associate Professor & Research Supervisor</span>
+                    <p class="research-area">
+                        <strong>Research Focus:</strong> Electromagnetics and optics, with a focus on metamaterials and plasmonics. Current research includes the design of novel optical devices using metamaterials.
+                    </p>
+                </div>
+            </article>
+            
+            <!-- Supervisor 4 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="person-info">
+                    <h3>Dr. Mubeshra Ishaq</h3>
+                    <span class="designation">Assistant Professor & Research Supervisor</span>
+                    <p class="research-area">
+                        <strong>Research Focus:</strong> Building Materials.
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <div class="section-header">
+            <div class="section-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h2>PhD Researchers</h2>
+        </div>
+
+        <div class="directory-grid">
+            <!-- PhD Researcher 1 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="person-info">
+                    <h3>Muhammad Hassan</h3>
+                    <span class="designation">PhD Candidate in Condensed Matter Physics</span>
+                    <p class="research-area">
+                        <strong>Research Area:</strong> Quantum transport phenomena in topological materials. Supervised by Dr. Irfan Toqeer.
+                    </p>
+                </div>
+            </article>
+            
+            <!-- PhD Researcher 2 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="person-info">
+                    <h3>Farah Naz</h3>
+                    <span class="designation">PhD Candidate in Material Science</span>
+                    <p class="research-area">
+                        <strong>Research Area:</strong> Development of perovskite solar cells with enhanced efficiency and stability. Supervised by Dr. Sara Khan.
+                    </p>
+                </div>
+            </article>
+            
+            <!-- PhD Researcher 3 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="person-info">
+                    <h3>Ahmed Azam</h3>
+                    <span class="designation">PhD Candidate in Theoretical Physics</span>
+                    <p class="research-area">
+                        <strong>Research Area:</strong> Quantum gravity approaches and holographic duality. Supervised by Prof. Ahmed Farooq.
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <div class="section-header">
+            <div class="section-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h2>MPhil Researchers</h2>
+        </div>
+
+        <div class="directory-grid">
+            <!-- MPhil Researcher 1 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="person-info">
+                    <h3>Tahreem Fatima</h3>
+                    <span class="designation">MPhil Researcher in Nanotechnology</span>
+                    <p class="research-area">
+                        <strong>Research Area:</strong> Nanophotonic structures for biomedical sensing applications. Supervised by Dr. Sara Khan.
+                    </p>
+                </div>
+            </article>
+            
+            <!-- MPhil Researcher 2 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="person-info">
+                    <h3>Sohail Ahmed</h3>
+                    <span class="designation">MPhil Researcher in Computational Physics</span>
+                    <p class="research-area">
+                        <strong>Research Area:</strong> Machine learning approaches for quantum many-body systems. Supervised by Dr. Irfan Toqeer.
+                    </p>
+                </div>
+            </article>
+            
+            <!-- MPhil Researcher 3 -->
+            <article class="person-card">
+                <div class="person-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="person-info">
+                    <h3>Muhammad Hassan</h3>
+                    <span class="designation">MPhil Researcher in Optics</span>
+                    <p class="research-area">
+                        <strong>Research Area:</strong> Nonlinear optical properties of metamaterials. Supervised by Dr. Sara Khan.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3 style="text-align: center; color: var(--white); margin-bottom: 1.5rem;">Department of Physics</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>physics@riphahfsd.edu.pk</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+92 41 111 264 264</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Satiana Road, Faisalabad, Pakistan</span>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Department of Physics, Riphah International University Faisalabad Campus. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
