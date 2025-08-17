@@ -3,568 +3,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department of Physics - RIU Faisalabad</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Department of Physics - Riphah International University, Faisalabad</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #0d3b66;
-            --secondary: #1d639b;
-            --accent: #e63946;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --white: #ffffff;
-            --transition: all 0.3s ease;
-        }
-
         body {
-            background-color: var(--white);
-            color: var(--dark);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .slide {
+            display: none;
             min-height: 100vh;
-            position: relative;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 2rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
-            z-index: 1;
-        }
-
-        .university-header {
+        .slide.active {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
+            opacity: 1;
         }
-
-        .university-logo {
-            width: 80px;
-            height: 80px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .slide-content {
+            animation: fadeIn 1s ease-in-out;
         }
-
-        .university-logo i {
-            font-size: 2.5rem;
-            color: var(--primary);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .university-logo img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        .university-info {
-            text-align: left;
-        }
-
-        .university-info h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0.2rem;
-            font-weight: 700;
-        }
-
-        .university-info p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 1rem 0;
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Introduction */
-        .introduction {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 2.5rem;
-            margin: 3rem auto;
-            max-width: 900px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--light-gray);
-            position: relative;
-            z-index: 1;
-        }
-
-        .introduction h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .introduction h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        .introduction p {
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            line-height: 1.8;
-        }
-
-        /* Directory Sections */
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin: 3rem 0 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--light-gray);
-        }
-
-        .section-header h2 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-right: 1rem;
-        }
-
-        .section-icon {
-            background: var(--primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-        }
-
-        /* Directory Grid */
-        .directory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .person-card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--light-gray);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .person-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-            border-color: var(--secondary);
-        }
-
-        .person-photo {
-            height: 200px;
-            background: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .person-photo i {
-            font-size: 5rem;
-            color: var(--gray);
-        }
-
-        .person-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .person-info {
-            padding: 1.8rem;
-            flex-grow: 1;
-        }
-
-        .person-info h3 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .designation {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .research-area {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed var(--light-gray);
-        }
-
-        .research-area strong {
-            color: var(--secondary);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary);
-            color: var(--white);
-            padding: 3rem 0 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .contact-item i {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .copyright {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .university-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .university-logo {
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
-            
-            .university-info {
-                text-align: center;
-            }
-            
-            .page-title {
-                font-size: 2rem;
-            }
-            
-            .introduction {
-                padding: 1.5rem;
-            }
-            
-            .directory-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-                gap: 1.5rem;
-            }
-            
-            .section-header {
-                margin: 2.5rem 0 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-title {
-                font-size: 1.7rem;
-            }
-            
-            .directory-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
+        /* Custom gradient for title slide */
+        .title-gradient {
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7));
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <div class="university-header">
-                <div class="university-logo">
-                    <img src="images/university_logo.png" alt="Riphah International University Logo">
-                </div>
-                <div class="university-info">
-                    <h2>Riphah International University</h2>
-                    <p>Department of Physics, Faisalabad Campus</p>
-                </div>
-            </div>
-            
-            <h1 class="page-title">MPhil & PhD Researchers & Supervisors</h1>
-        </div>
-    </header>
+<body class="bg-gray-100 antialiased">
 
-    <div class="container">
-        <section class="introduction">
-            <h2>About Our Research Department</h2>
-            <p>The Department of Physics at Riphah International University, Faisalabad Campus, is dedicated to advancing knowledge through cutting-edge research in various fields of physics. Our postgraduate program brings together talented researchers and experienced supervisors to explore fundamental questions and develop innovative solutions to real-world problems.</p>
-            <p>Our research groups focus on interdisciplinary areas including condensed matter physics, quantum mechanics, material science, and computational physics. We foster a collaborative environment where MPhil and PhD candidates work alongside distinguished faculty members to push the boundaries of scientific discovery.</p>
+    <div id="presentation-container" class="relative min-h-screen w-full overflow-hidden">
+
+        <!-- Slide 1: Title Slide -->
+        <section id="slide-1" class="slide active flex-col justify-center items-center text-white p-8 text-center bg-gradient-to-br from-blue-900 to-blue-800">
+            <div class="title-gradient absolute inset-0"></div>
+            <div class="slide-content relative z-10">
+                <img src="university_logo.png" alt="Riphah University Logo" class="mx-auto mb-6 rounded-full shadow-lg" style="width: 150px; height: 150px; object-fit: contain; background: white; padding: 10px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/cccccc/333333?text=Logo+Error';">
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-3">Department of Physics</h1>
+                <p class="text-xl md:text-2xl font-light text-blue-200 mb-4">Unveiling the Universe, Engineering the Future</p>
+                <p class="text-lg md:text-xl font-semibold">Riphah International University, Faisalabad Campus</p>
+            </div>
         </section>
 
-        <div class="section-header">
-            <div class="section-icon">
-                <i class="fas fa-user-tie"></i>
+        <!-- Slide 2: Welcome Message -->
+        <section id="slide-2" class="slide items-center justify-center bg-white p-8 md:p-16">
+            <div class="slide-content container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8 text-center">Welcome Message</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-start">
+                    <div class="bg-gray-50 p-8 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">Message from HOD</h3>
+                        <p class="text-lg text-gray-700 mb-6">Welcome to the Department of Physics at Riphah International University, Faisalabad Campus. We are committed to excellence in physics education and research.</p>
+                        <div class="text-center">
+                            <img src="hod.png" alt="Head of Department Photo" class="w-32 h-32 rounded-full mx-auto mb-3 shadow-lg object-cover" style="background: white; padding: 5px;" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=HOD+Photo';">
+                            <h4 class="font-bold text-lg">Dr. Abdul Ghuffar</h4>
+                            <p class="text-blue-700">Head of Department</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Our Mission</h3>
+                            <p class="text-gray-700">To establish a state-of-the-art Physics department that fosters excellence, innovation, ethical values, and hands-on expertise for academic and research advancement.</p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Our Vision</h3>
+                            <ul class="text-gray-700 space-y-2 text-sm">
+                                <li>• To lead in developing value-based research, education, and training programs in Physics, combining scientific excellence with ethical principles.</li>
+                                <li>• To establish state-of-the-art institutions globally, integrating Islamic values and Pakistan's ideology, producing dynamic and committed individuals.</li>
+                                <li>• To implement innovative educational strategies, experiential learning, and outcome-based programs to enhance the quality of Physics education.</li>
+                                <li>• To create model institutions that contribute to applied sciences, and societal well-being, incorporating Islamic thought and culture.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Core Values</h3>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Academic Excellence</li>
+                                <li>• Research & Innovation</li>
+                                <li>• Ethical Practice</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h2>Research Supervisors</h2>
-        </div>
+        </section>
 
-        <div class="directory-grid">
-            <!-- Supervisor 1 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <img src="images/dr-irfan-toqeer.jpg" alt="Dr. Irfan Toqeer">
+        <!-- Slide 3: Welcome to Riphah -->
+        <section id="slide-3" class="slide items-center justify-center bg-white p-8 md:p-16">
+            <div class="slide-content container mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-gray-800">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">A Tradition of Excellence & Islamic Ethical Values</h2>
+                    <p class="text-lg mb-4">Welcome to Riphah International University, a leading institution committed to academic excellence integrated with Islamic ethical values.</p>
+                    <ul class="list-disc list-inside space-y-2 text-lg">
+                        <li>Globally recognized curriculum and research.</li>
+                        <li>State-of-the-art facilities at the vibrant Faisalabad Campus.</li>
+                        <li>Fostering an environment of intellectual growth and character building.</li>
+                    </ul>
                 </div>
-                <div class="person-info">
-                    <h3>Dr. Irfan Toqeer</h3>
-                    <span class="designation">Assistant Professor</span>
-                    <p class="research-area">
-                        <strong>Research Focus:</strong> Electromagnetics and nanomaterial characterization. 
+                <div>
+                    <img src="Picture1.jpg" alt="Riphah Faisalabad Campus" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Error';">
                 </div>
-            </article>
-            
-            <!-- Supervisor 2 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <img src="images/dr-abdul-ghuffar.png" alt="Prof. Dr. Abdul Ghuffar">
-                </div>
-                <div class="person-info">
-                    <h3>Prof. Dr. Abdul Ghuffar</h3>
-                    <span class="designation">Professor & Head of Department</span>
-                    <p class="research-area">
-                        <strong>Research Focus:</strong> Material science.
-                    </p>
-                </div>
-            </article>
-            
-            <!-- Supervisor 3 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <img src="images/dr-muhammad-afzaal.png" alt="Dr. Muhammad Afzaal">
-                </div>
-                <div class="person-info">
-                    <h3>Dr. Muhammad Afzaal</h3>
-                    <span class="designation">Associate Professor & Research Supervisor</span>
-                    <p class="research-area">
-                        <strong>Research Focus:</strong> Electromagnetics and optics, with a focus on metamaterials and plasmonics. Current research includes the design of novel optical devices using metamaterials.
-                    </p>
-                </div>
-            </article>
-            
-            <!-- Supervisor 4 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="person-info">
-                    <h3>Dr. Mubeshra Ishaq</h3>
-                    <span class="designation">Assistant Professor & Research Supervisor</span>
-                    <p class="research-area">
-                        <strong>Research Focus:</strong> Building Materials.
-                    </p>
-                </div>
-            </article>
-        </div>
-
-        <div class="section-header">
-            <div class="section-icon">
-                <i class="fas fa-graduation-cap"></i>
             </div>
-            <h2>PhD Researchers</h2>
-        </div>
+        </section>
 
-        <div class="directory-grid">
-            <!-- PhD Researcher 1 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <i class="fas fa-user"></i>
+        <!-- Slide 4: Why Study Physics? -->
+        <section id="slide-4" class="slide flex-col items-center justify-center bg-blue-50 p-8 md:p-16 text-center">
+            <div class="slide-content container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Why Study Physics? ⚛️</h2>
+                <p class="text-xl max-w-3xl mx-auto text-gray-700 mb-8">Physics is the fundamental science that drives innovation across every modern field, from medicine and computing to energy and space exploration.</p>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <img src="https://placehold.co/400x300/ef4444/ffffff?text=MRI+Machine" alt="Medical Physics" class="rounded-md mb-3 h-32 w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/333333?text=Image+Error';">
+                        <h3 class="font-semibold text-lg">Medicine</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <img src="https://placehold.co/400x300/3b82f6/ffffff?text=Quantum+Computer" alt="Quantum Computing" class="rounded-md mb-3 h-32 w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/333333?text=Image+Error';">
+                        <h3 class="font-semibold text-lg">Computing</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <img src="https://placehold.co/400x300/10b981/ffffff?text=Satellite" alt="Space Exploration" class="rounded-md mb-3 h-32 w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/333333?text=Image+Error';">
+                        <h3 class="font-semibold text-lg">Aerospace</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <img src="https://placehold.co/400x300/f97316/ffffff?text=Fusion+Reactor" alt="Energy" class="rounded-md mb-3 h-32 w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/333333?text=Image+Error';">
+                        <h3 class="font-semibold text-lg">Energy</h3>
+                    </div>
                 </div>
-                <div class="person-info">
-                    <h3>Muhammad Hassan</h3>
-                    <span class="designation">PhD Candidate in Condensed Matter Physics</span>
-                    <p class="research-area">
-                        <strong>Research Area:</strong> Quantum transport phenomena in topological materials.
-                    </p>
-                </div>
-            </article>
-            
-            <!-- PhD Researcher 2 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="person-info">
-                    <h3>Farah Naz</h3>
-                    <span class="designation">PhD Candidate in Material Science</span>
-                    <p class="research-area">
-                        <strong>Research Area:</strong> Development of perovskite solar cells with enhanced efficiency and stability. 
-                    </p>
-                </div>
-            </article>
-            
-            <!-- PhD Researcher 3 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="person-info">
-                    <h3>Ahmed Azam</h3>
-                    <span class="designation">PhD Candidate in Theoretical Physics</span>
-                    <p class="research-area">
-                        <strong>Research Area:</strong> Quantum gravity approaches and holographic duality.
-                    </p>
-                </div>
-            </article>
-        </div>
-
-        <div class="section-header">
-            <div class="section-icon">
-                <i class="fas fa-book-open"></i>
             </div>
-            <h2>MPhil Researchers</h2>
-        </div>
+        </section>
 
-        <div class="directory-grid">
-            <!-- MPhil Researcher 1 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <i class="fas fa-user"></i>
+        <!-- Slide 4: About Our Department -->
+        <section id="slide-4" class="slide items-center justify-center bg-white p-8 md:p-16">
+            <div class="slide-content container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8">Our Vision & Mission</h2>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="bg-gray-50 p-8 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-3">Our Vision</h3>
+                        <p class="text-lg text-gray-700">To be a center of excellence in physics education and research, producing competent professionals with strong ethical values to serve the society.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-3">Our Mission</h3>
+                        <ul class="list-disc list-inside space-y-2 text-lg text-gray-700">
+                            <li>Provide quality education in fundamental and applied physics.</li>
+                            <li>Foster a culture of research and critical thinking.</li>
+                            <li>Equip students with skills to solve real-world problems.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="person-info">
-                    <h3>Tahreem Fatima</h3>
-                    <span class="designation">MPhil Researcher in Nanotechnology</span>
-                    <p class="research-area">
-                        <strong>Research Area:</strong> Nanophotonic structures for biomedical sensing applications. 
-                    </p>
+            </div>
+        </section>
+
+        <!-- Slide 5: Programs Launched -->
+        <section id="slide-5" class="slide flex-col items-center justify-center bg-white p-8 md:p-16">
+            <div class="slide-content container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8">Programs Launched</h2>
+                <p class="text-xl text-gray-700 mb-12">Our department has progressively expanded its academic offerings to meet the evolving needs of modern physics education</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- First Row - Established Programs -->
+                    <div class="bg-blue-50 p-8 rounded-xl shadow-lg border-l-4 border-blue-500 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-blue-600 mb-3">2018</div>
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">🎓 BS Physics</h3>
+                        <p class="text-gray-700">Our foundational undergraduate program establishing excellence in physics education</p>
+                    </div>
+                    
+                    <div class="bg-green-50 p-8 rounded-xl shadow-lg border-l-4 border-green-500 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-green-600 mb-3">2019</div>
+                        <h3 class="text-xl font-bold text-green-800 mb-2">🎓 MPhil Physics</h3>
+                        <p class="text-gray-700">Advanced research-oriented program for specialized physics studies</p>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-8 rounded-xl shadow-lg border-l-4 border-purple-500 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-purple-600 mb-3">2022</div>
+                        <h3 class="text-xl font-bold text-purple-800 mb-2">🎓 PhD Physics</h3>
+                        <p class="text-gray-700">Doctoral program fostering cutting-edge research and innovation</p>
+                    </div>
                 </div>
-            </article>
-            
-            <!-- MPhil Researcher 2 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <i class="fas fa-user"></i>
+                
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <!-- Second Row - Latest Programs -->
+                    <div class="bg-orange-50 p-8 rounded-xl shadow-lg border-l-4 border-orange-500 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-orange-600 mb-3">2025</div>
+                        <h3 class="text-xl font-bold text-orange-800 mb-2">🎓 BS Quantum Computing & Electronics</h3>
+                        <p class="text-gray-700">Revolutionary program combining quantum physics with modern electronics</p>
+                    </div>
+                    
+                    <div class="bg-teal-50 p-8 rounded-xl shadow-lg border-l-4 border-teal-500 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-teal-600 mb-3">2025</div>
+                        <h3 class="text-xl font-bold text-teal-800 mb-2">🎓 BS Computational Physics</h3>
+                        <p class="text-gray-700">Interdisciplinary program merging physics with computational methods</p>
+                    </div>
                 </div>
-                <div class="person-info">
-                    <h3>Sohail Ahmed</h3>
-                    <span class="designation">MPhil Researcher in Computational Physics</span>
-                    <p class="research-area">
-                        <strong>Research Area:</strong> Machine learning approaches for quantum many-body systems.
-                    </p>
+                
+                <!-- Timeline Summary -->
+                <div class="mt-12 bg-gradient-to-r from-blue-100 to-purple-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Our Growth Journey</h3>
+                    <p class="text-gray-700">From a single undergraduate program in 2018 to five comprehensive programs by 2025, demonstrating our commitment to educational excellence and innovation.</p>
                 </div>
-            </article>
-            
-            <!-- MPhil Researcher 3 -->
-            <article class="person-card">
-                <div class="person-photo">
-                    <i class="fas fa-user"></i>
+            </div>
+        </section>
+
+        <!-- Slide 6: Our Esteemed Faculty -->
+        <section id="slide-6" class="slide flex-col items-center justify-center bg-blue-50 p-8 md:p-16">
+            <div class="slide-content container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8">Learn From Leading Experts</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <img src="hod.png" alt="Prof. Dr. Abdul Ghuffar" class="w-32 h-32 rounded-full mx-auto mb-3 shadow-lg object-cover" style="background: white; padding: 5px;" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=HOD+Photo';">
+                        <h4 class="font-bold text-lg">Prof. Dr. Abdul Ghuffar</h4>
+                        <p class="text-blue-700">Professor</p>
+                        <p class="text-gray-600 text-sm">PhD Physics</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="afzaal.png" alt="Dr. Muhammad Afzaal" class="w-32 h-32 rounded-full mx-auto mb-3 shadow-lg object-cover" style="background: white; padding: 5px;" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=Faculty+Photo';">
+                        <h4 class="font-bold text-lg">Dr. Muhammad Afzaal</h4>
+                        <p class="text-blue-700">Assistant Professor</p>
+                        <p class="text-gray-600 text-sm">PhD Electronics</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/e2e8f0/334155?text=Faculty+3" alt="Faculty Member 3" class="w-32 h-32 rounded-full mx-auto mb-3 shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=Error';">
+                        <h4 class="font-bold text-lg">Dr. Name Here</h4>
+                        <p class="text-blue-700">PhD, Specialization</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/e2e8f0/334155?text=Faculty+4" alt="Faculty Member 4" class="w-32 h-32 rounded-full mx-auto mb-3 shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=Error';">
+                        <h4 class="font-bold text-lg">Dr. Name Here</h4>
+                        <p class="text-blue-700">PhD, Specialization</p>
+                    </div>
                 </div>
-                <div class="person-info">
-                    <h3>Muhammad Hassan</h3>
-                    <span class="designation">MPhil Researcher in Optics</span>
-                    <p class="research-area">
-                        <strong>Research Area:</strong> Nonlinear optical properties of metamaterials. 
-                    </p>
+            </div>
+        </section>
+
+        <!-- Slide 7: Research & Innovation -->
+        <section id="slide-7" class="slide items-center justify-center bg-white p-8 md:p-16">
+            <div class="slide-content container mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="poster.png" alt="Research at Riphah" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x450/cccccc/333333?text=Image+Error';">
                 </div>
-            </article>
-        </div>
+                <div class="text-gray-800">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Pushing the Boundaries of Knowledge</h2>
+                    <p class="text-lg mb-4">Our department is a hub of research activity with a focus on high-impact, globally relevant areas.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="bg-blue-600 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center mr-3 mt-1 font-bold">1</span> Materials Science & Nanotechnology</li>
+                        <li class="flex items-start"><span class="bg-blue-600 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center mr-3 mt-1 font-bold">2</span> Computational & Theoretical Physics</li>
+                        <li class="flex items-start"><span class="bg-blue-600 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center mr-3 mt-1 font-bold">3</span> Laser & Plasma Physics</li>
+                        <li class="flex items-start"><span class="bg-blue-600 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center mr-3 mt-1 font-bold">4</span> High Energy Physics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: State-of-the-Art Facilities & Labs -->
+        <section id="slide-8" class="slide items-center justify-center bg-white p-8 md:p-16">
+            <div class="slide-content container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8">State-of-the-Art Facilities & Labs 🔬</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <img src="https://placehold.co/400x400/1e40af/ffffff?text=Electronics+Lab" alt="Electronics Lab" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/333333?text=Error';">
+                    <img src="https://placehold.co/400x400/1d4ed8/ffffff?text=Optics+Lab" alt="Optics Lab" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/333333?text=Error';">
+                    <img src="https://placehold.co/400x400/2563eb/ffffff?text=Modern+Physics+Lab" alt="Modern Physics Lab" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/333333?text=Error';">
+                    <img src="https://placehold.co/400x400/3b82f6/ffffff?text=Computational+Lab" alt="Computational Lab" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/333333?text=Error';">
+                </div>
+                <p class="mt-6 text-lg text-gray-700">Our well-equipped labs provide students with the hands-on experience needed to bridge theory and practice.</p>
+            </div>
+        </section>
+
+        <!-- Slide 9: Student Life -->
+        <section id="slide-9" class="slide flex-col items-center justify-center bg-blue-50 p-8 md:p-16">
+            <div class="slide-content container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8">More Than Just a Degree</h2>
+                <p class="text-xl max-w-3xl mx-auto text-gray-700 mb-8">Engage in a vibrant campus life with societies, seminars, industrial tours, and workshops that build your professional network and personal skills.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="col-span-1 row-span-1"><img src="https://placehold.co/600x400/60a5fa/ffffff?text=Student+Seminar" class="rounded-lg shadow-md w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Error';"></div>
+                    <div class="col-span-1 row-span-2"><img src="https://placehold.co/600x800/3b82f6/ffffff?text=Industrial+Tour" class="rounded-lg shadow-md w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x800/cccccc/333333?text=Error';"></div>
+                    <div class="col-span-1 row-span-1"><img src="https://placehold.co/600x400/2563eb/ffffff?text=Science+Fair" class="rounded-lg shadow-md w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Error';"></div>
+                    <div class="col-span-1 row-span-1"><img src="https://placehold.co/600x400/1d4ed8/ffffff?text=Workshop" class="rounded-lg shadow-md w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Error';"></div>
+                    <div class="col-span-1 row-span-1"><img src="https://placehold.co/600x400/1e40af/ffffff?text=Guest+Lecture" class="rounded-lg shadow-md w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Error';"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Career Pathways -->
+        <section id="slide-10" class="slide items-center justify-center bg-white p-8 md:p-16">
+            <div class="slide-content container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8 text-center">Launch Your Career with a Physics Degree</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Diverse Career Fields</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-blue-100 text-blue-800 text-md font-medium px-4 py-2 rounded-full">Academia & Research</span>
+                            <span class="bg-green-100 text-green-800 text-md font-medium px-4 py-2 rounded-full">Healthcare</span>
+                            <span class="bg-purple-100 text-purple-800 text-md font-medium px-4 py-2 rounded-full">IT & Data Science</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-md font-medium px-4 py-2 rounded-full">Energy Sector</span>
+                            <span class="bg-red-100 text-red-800 text-md font-medium px-4 py-2 rounded-full">Telecommunications</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-md font-medium px-4 py-2 rounded-full">Government (PAEC, KRL)</span>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 p-8 rounded-lg border-l-4 border-blue-500">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Alumni Spotlight</h3>
+                        <div class="flex items-center">
+                            <img src="alumni.png" alt="Muhammad Qamar" class="w-20 h-20 rounded-full mr-4 object-cover shadow-lg" style="background: white; padding: 3px;" onerror="this.onerror=null;this.src='https://placehold.co/100x100/cccccc/333333?text=Alumni';">
+                            <div>
+                                <p class="text-lg italic text-gray-700">"The comprehensive education and research foundation I received at Riphah International University has been instrumental in my academic journey and research pursuits in Europe."</p>
+                                <p class="font-bold mt-2">- Muhammad Qamar, <span class="font-normal text-blue-800">PhD Scholar, Technical University, Czech Republic</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Admissions -->
+        <section id="slide-11" class="slide items-center justify-center bg-blue-50 p-8 md:p-16">
+            <div class="slide-content container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8">Join Us!</h2>
+                <p class="text-xl max-w-3xl mx-auto text-gray-700 mb-10">Begin your journey of discovery. Here’s how to apply.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                        <div class="text-3xl font-bold text-blue-600 bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">1</div>
+                        <h3 class="text-xl font-semibold">Online Application</h3>
+                    </div>
+                    <div class="text-2xl text-blue-300 hidden md:block">&rarr;</div>
+                    <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                        <div class="text-3xl font-bold text-blue-600 bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">2</div>
+                        <h3 class="text-xl font-semibold">Entry Test</h3>
+                    </div>
+                    <div class="text-2xl text-blue-300 hidden md:block">&rarr;</div>
+                    <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                        <div class="text-3xl font-bold text-blue-600 bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">3</div>
+                        <h3 class="text-xl font-semibold">Interview</h3>
+                    </div>
+                </div>
+                <a href="#" class="mt-10 inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-blue-700 transition-colors">Apply Now</a>
+            </div>
+        </section>
+
+        <!-- Slide 12: Q&A / Contact -->
+        <section id="slide-12" class="slide flex-col items-center justify-center bg-cover bg-center text-white" style="background-image: url('https://placehold.co/1920x1080/0a192f/ffffff?text=Cosmic+Background');">
+            <div class="title-gradient absolute inset-0"></div>
+            <div class="slide-content container mx-auto text-center relative z-10 p-8">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">Questions?</h2>
+                <p class="text-xl text-blue-200 mb-6">We'd love to hear from you. Get in touch with us.</p>
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-lg max-w-2xl mx-auto">
+                    <p class="text-lg"><strong>Department Head:</strong> [Head's Name]</p>
+                    <p class="text-lg mb-4"><strong>Email:</strong> physics.fsd@riphah.edu.pk</p>
+                    <p class="text-lg"><strong>Admissions Office:</strong> [Phone Number]</p>
+                    <p class="text-lg mb-4"><strong>Email:</strong> admissions.fsd@riphah.edu.pk</p>
+                    <p class="text-lg font-semibold">www.riphahfsd.edu.pk</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <div class="fixed bottom-5 right-5 z-50 flex space-x-3">
+        <button id="prevBtn" class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-110 focus:outline-none">
+            &#x2190;
+        </button>
+        <button id="nextBtn" class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-110 focus:outline-none">
+            &#x2192;
+        </button>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <h3 style="text-align: center; color: var(--white); margin-bottom: 1.5rem;">Department of Physics</h3>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>abdul.ghuffar@riphahfsd.edu.pk</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+92 3005200395</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Satiana Road, Faisalabad, Pakistan</span>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Department of Physics, Riphah International University Faisalabad Campus. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Slide Counter -->
+    <div id="slideCounter" class="fixed bottom-5 left-5 z-50 bg-gray-800 text-white text-sm px-3 py-1 rounded-full shadow-lg">
+        1 / 12
+    </div>
+
+    <script>
+        // JavaScript for slide navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                // Ensure index is within bounds
+                if (index >= totalSlides) {
+                    currentSlide = 0;
+                } else if (index < 0) {
+                    currentSlide = totalSlides - 1;
+                } else {
+                    currentSlide = index;
+                }
+
+                // Hide all slides and then show the active one
+                slides.forEach((slide, i) => {
+                    if (i === currentSlide) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+                
+                // Update slide counter
+                slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+            }
+
+            // Button event listeners
+            nextBtn.addEventListener('click', () => {
+                showSlide(currentSlide + 1);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                showSlide(currentSlide - 1);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') { // Space bar also goes next
+                    showSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    showSlide(currentSlide - 1);
+                }
+            });
+
+            // Initial setup
+            showSlide(0);
+        });
+    </script>
+
 </body>
 </html>
